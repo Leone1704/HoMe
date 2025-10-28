@@ -1,10 +1,10 @@
 #include <stdio.h>
 
 int main(void){
-    int alter = 0;
-    printf("Wie alt bist du?\n");
-    scanf("%d", &alter);
-    printf("Du bist '%d' Jahre alt.\n", alter);
+    int monat, tag;
+    printf("Gib dein Geburtstag folgenderweiße an : mm/tt\n");
+    scanf("%d/%d", &monat, &tag);
+    printf("Du hast am %d/%d Geburtstag\n", tag, monat);
     
     return 0;
 }
