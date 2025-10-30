@@ -5,50 +5,19 @@
 int main() {
     printf("  I N F O\v\tR\v\tM A T I K\n\n\n");
     float a = 1000.50f, b = 150.70f, c = 2150.75f, d = 20.00f, summe = a + b + c + d; //Wenn ich die Summe unformatiertrt ausgebe, stimmt sie nicht genau, bzw sie spuckt mehr Nachkommastellen aus
-    printf("\t%7.2f\n\t%7.2f\n\t%7.2f\n\t%7.2f\nSumme:  %7.2f\n", a, b, c, d, summe);
+    printf("\t%7.2f\n\t%7.2f\n\t%7.2f\n\t%7.2f\nSumme:  %7.2f\n\n", a, b, c, d, summe);
     
 
     //Zeichentabelle:
     char a1 = 201; //╔
-    char b1 = 187; //╗
-    char c1 = 200; //╚
-    char d1 = 188; //╝
-    char e1 = 205; //═
-    char f1 = 186; //║
-    int breite, hoehe;
-
-    printf("Wie hoch und wie breit soll der Kasten sein?\nSchreibe folgenderweiße: yy/xx (hoehe/breite)\n");
-    if (scanf("%d/%d", &hoehe, &breite) != 2) return 1;
-
-    if (breite < 0) breite = 0;
-    if (hoehe < 0) hoehe = 0;
-
-    /* Dynamische Puffer für variable Breite */
-    char *line = malloc((size_t)breite + 1);
-    char *spaces = malloc((size_t)breite + 1);
-    if (!line || !spaces) {
-        perror("malloc");
-        free(line);
-        free(spaces);
-        return 1;
-    }
-    for (int i = 0; i < breite; i++) line[i] = e1;
-    line[breite] = '\0';
-    for (int i = 0; i < breite; i++) spaces[i] = ' ';
-    spaces[breite] = '\0';
-
-    /* Ausgabe */
-    printf("\t%c%s%c\n", a1, line, b1);
-    for (int zeile = 0; zeile < hoehe; zeile++) {
-        printf("\t%c%s%c\n", f1, spaces, f1);
-    }
-    printf("\t%c%s%c", c1, line, d1);
-
-    free(line);
-    free(spaces);
-    return 0;
+    char b1 = 187; //╗ 
+    char c1 = 200; //╚ 
+    char d1 = 188; //╝ 
+    char e1 = 205; //═ 
+    char f1 = 186; //║  
+    printf("\t%c%c%c%c%c%c%c%c\n\t%c      %c\n\t%c      %c\n\t%c      %c\n\t%c%c%c%c%c%c%c%c\n\n",a1,e1,e1,e1,e1,e1,e1,b1,f1,f1,f1,f1,f1,f1,c1,e1,e1,e1,e1,e1,e1,d1); //Zurzeit 6 Leertasten. Hier gerade ASCII Code 
+    printf("\t╔═════╗\n\t║     ║\n\t║     ║\n\t║     ║\n\t╚═════╝"); 
 }
-//    printf("\t%c%c%c%c%c%c%c%c\n\t%c      %c\n\t%c      %c\n\t%c      %c\n\t%c%c%c%c%c%c%c%c",a1,e1,e1,e1,e1,e1,e1,b1,f1,f1,f1,f1,f1,f1,c1,e1,e1,e1,e1,e1,e1,d1); //Zurzeit 6 Leertasten
 
 /*
 Aufgabe 2-b
