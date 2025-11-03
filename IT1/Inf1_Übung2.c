@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <math.h>
-#include <stdlib.h>
 
 int main() {
     printf("  I N F O\v\tR\v\tM A T I K\n\n\n");
@@ -10,13 +9,50 @@ int main() {
 
     //Zeichentabelle:
     char a1 = 201; //╔
+<<<<<<< HEAD
+    char b1 = 187; //╗
+    char c1 = 200; //╚
+    char d1 = 188; //╝
+    char e1 = 205; //═
+    char f1 = 186; //║
+    int breite, hoehe;
+    
+    printf("Wie hoch und wie breit soll der Kasten sein?\nSchreibe folgenderweiße: yy/xx (hoehe/breite)\n");
+    scanf("%d/%d", &hoehe, &breite);
+    
+    // Obere Zeile mit Einrückung
+    printf("\t%c", a1);
+    
+    // Horizontale Linien (oben und unten)
+    char line[100] = "";
+    for(int i = 0; i < breite; i++) line[i] = e1;
+    line[breite] = '\0';
+    
+    // Mittlere Leerzeilen
+    char spaces[100] = "";
+    for(int i = 0; i < breite; i++) spaces[i] = ' ';
+    spaces[breite] = '\0';
+    
+    // Kompletter Kasten mit 5 printf Befehlen
+    printf("%s%c\n", line, b1);
+    for(int zeile = 0; zeile < hoehe; zeile++) {
+        printf("\t%c%s%c\n", f1, spaces, f1);
+    }
+    printf("\t%c%s%c", c1, line, d1);
+    return 0;
+=======
     char b1 = 187; //╗ 
     char c1 = 200; //╚ 
     char d1 = 188; //╝ 
     char e1 = 205; //═ 
     char f1 = 186; //║  
     printf("\t%c%c%c%c%c%c%c%c\n\t%c      %c\n\t%c      %c\n\t%c      %c\n\t%c%c%c%c%c%c%c%c\n\n",a1,e1,e1,e1,e1,e1,e1,b1,f1,f1,f1,f1,f1,f1,c1,e1,e1,e1,e1,e1,e1,d1); //Zurzeit 6 Leertasten. Hier gerade ASCII Code 
+<<<<<<< HEAD
     printf("\t╔═════╗\n\t║     ║\n\t║     ║\n\t║     ║\n\t╚═════╝"); //Für UTF-8
+=======
+    printf("\t╔═════╗\n\t║     ║\n\t║     ║\n\t║     ║\n\t╚═════╝"); 
+>>>>>>> 1b4de5766dae3dca68a76f341c3b183f0c39dfec
+>>>>>>> c4e84b7c71e43237ca841a9aaafd998dc387973c
 }
 
 /*
