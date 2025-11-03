@@ -16,7 +16,7 @@ int main() {
     char e1 = 205; //═ 
     char f1 = 186; //║  
     printf("\t%c%c%c%c%c%c%c%c\n\t%c      %c\n\t%c      %c\n\t%c      %c\n\t%c%c%c%c%c%c%c%c\n\n",a1,e1,e1,e1,e1,e1,e1,b1,f1,f1,f1,f1,f1,f1,c1,e1,e1,e1,e1,e1,e1,d1); //Zurzeit 6 Leertasten. Hier gerade ASCII Code 
-    printf("\t╔═════╗\n\t║     ║\n\t║     ║\n\t║     ║\n\t╚═════╝"); 
+    printf("\t╔═════╗\n\t║     ║\n\t║     ║\n\t║     ║\n\t╚═════╝"); //Für UTF-8
 }
 
 /*
