@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {
     "configurations": [
         {
@@ -27,4 +28,20 @@
         }
     ],
     "version": "2.0.0"
+=======
+{
+    // Verwendet IntelliSense zum Ermitteln möglicher Attribute.
+    // Zeigen Sie auf vorhandene Attribute, um die zugehörigen Beschreibungen anzuzeigen.
+    // Weitere Informationen finden Sie unter https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "CMake: CMake Script",
+            "type": "cmake",
+            "request": "launch",
+            "cmakeDebugType": "script",
+            "scriptPath": "${file}"
+        }
+    ]
+>>>>>>> 1b4de5766dae3dca68a76f341c3b183f0c39dfec
 }

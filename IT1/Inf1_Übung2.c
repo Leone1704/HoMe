@@ -4,11 +4,12 @@
 int main() {
     printf("  I N F O\v\tR\v\tM A T I K\n\n\n");
     float a = 1000.50f, b = 150.70f, c = 2150.75f, d = 20.00f, summe = a + b + c + d; //Wenn ich die Summe unformatiertrt ausgebe, stimmt sie nicht genau, bzw sie spuckt mehr Nachkommastellen aus
-    printf("\t%7.2f\n\t%7.2f\n\t%7.2f\n\t%7.2f\nSumme:  %7.2f\n", a, b, c, d, summe);
+    printf("\t%7.2f\n\t%7.2f\n\t%7.2f\n\t%7.2f\nSumme:  %7.2f\n\n", a, b, c, d, summe);
     
 
     //Zeichentabelle:
     char a1 = 201; //╔
+<<<<<<< HEAD
     char b1 = 187; //╗
     char c1 = 200; //╚
     char d1 = 188; //╝
@@ -39,8 +40,16 @@ int main() {
     }
     printf("\t%c%s%c", c1, line, d1);
     return 0;
+=======
+    char b1 = 187; //╗ 
+    char c1 = 200; //╚ 
+    char d1 = 188; //╝ 
+    char e1 = 205; //═ 
+    char f1 = 186; //║  
+    printf("\t%c%c%c%c%c%c%c%c\n\t%c      %c\n\t%c      %c\n\t%c      %c\n\t%c%c%c%c%c%c%c%c\n\n",a1,e1,e1,e1,e1,e1,e1,b1,f1,f1,f1,f1,f1,f1,c1,e1,e1,e1,e1,e1,e1,d1); //Zurzeit 6 Leertasten. Hier gerade ASCII Code 
+    printf("\t╔═════╗\n\t║     ║\n\t║     ║\n\t║     ║\n\t╚═════╝"); 
+>>>>>>> 1b4de5766dae3dca68a76f341c3b183f0c39dfec
 }
-//    printf("\t%c%c%c%c%c%c%c%c\n\t%c      %c\n\t%c      %c\n\t%c      %c\n\t%c%c%c%c%c%c%c%c",a1,e1,e1,e1,e1,e1,e1,b1,f1,f1,f1,f1,f1,f1,c1,e1,e1,e1,e1,e1,e1,d1); //Zurzeit 6 Leertasten
 
 /*
 Aufgabe 2-b

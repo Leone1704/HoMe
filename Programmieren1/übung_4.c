@@ -51,6 +51,7 @@ int main() {
         break;
         }
     printf("die zweite zahl y ist durch x teilbar!\n");
+    
     break;
     }   
     
