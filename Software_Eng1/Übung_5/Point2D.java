@@ -1,0 +1,30 @@
+import java.util.Objects;
+
+public final class Point2D {
+    private final double x;
+    private final double y;
+
+    public Point2D(double x, double y) {
+        this.x = x;
+        this.y = y;
+    }
+
+    public double getX() { return x; }
+    public double getY() { return y; }
+
+    public double distanceTo(Point2D p) {
+        Objects.requireNonNull(p, "p must not be null");
+        double dx = x - p.x;
+        double dy = y - p.y;
+        return Math.sqrt(dx*dx + dy*dy);
+    }
+
+    public Point2D translate(double dx, double dy) {
+        return new Point2D(x + dx, y + dy);
+    }
+
+    @Override
+    public String toString() {
+        return String.format("(%.2f, %.2f)", x, y);
+    }
+}
