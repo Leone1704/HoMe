@@ -25,19 +25,7 @@ public class MathUtils {
     }
 
 
-    public static void main(){
-    double zahl = 3.14159;
-    int stellen = 3;
-    double laenge1 = 3.0;
-    double laenge2 = 4.0;
-    double gerundet = MathUtils.roundTo(zahl, stellen);
-    System.out.println("Die Zahl " + zahl + " gerundet auf " + stellen + " Stellen ist: " + gerundet);
-    double norm = MathUtils.norm2(laenge1, laenge2);
-    System.out.println("Die euklidische Norm des Vektors mit den Komponenten " + laenge1 + " und " + laenge2 + " ist: " + norm);
-    int jahr = 2020;
-    boolean schaltjahr = MathUtils.isLeapYear(jahr);  
-    System.out.println("Ist das Jahr " + jahr + " ein Schaltjahr? " + schaltjahr);
-    }
+    
     // Die meißten Werte haben hier eine Begrenzung (z.B. n >= 0 bei roundTo), um ungültige Eingaben zu vermeiden oder double kann auch nur eine bestimmte Menge an Nachkommastellen genau darstellen.
     //Erklären Sie auch die Bedeutung des static-Modifiers. --> Der static-Modifier bedeutet, dass die Methode oder Variable zur Klasse selbst gehört und nicht zu einer Instanz der Klasse. Das bedeutet, dass Sie auf statische Methoden und Variablen zugreifen können, ohne ein Objekt der Klasse zu erstellen. In diesem Fall können die Methoden in MathUtils direkt über den Klassennamen aufgerufen werden, z.B. MathUtils.roundTo(...), ohne dass eine Instanz von MathUtils erstellt werden muss.
 

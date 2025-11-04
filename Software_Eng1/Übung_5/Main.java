@@ -1,6 +1,20 @@
+
+
 public class Main {
     public static void main(String[] args) {
         // Test Point2D
+
+    double zahl = 3.14159;
+    int stellen = 3;
+    double laenge1 = 3.0;
+    double laenge2 = 4.0;
+    double gerundet = MathUtils.roundTo(zahl, stellen);
+    System.out.println("Die Zahl " + zahl + " gerundet auf " + stellen + " Stellen ist: " + gerundet);
+    double norm = MathUtils.norm2(laenge1, laenge2);
+    System.out.println("Die euklidische Norm des Vektors mit den Komponenten " + laenge1 + " und " + laenge2 + " ist: " + norm);
+    int jahr = 2020;
+    boolean schaltjahr = MathUtils.isLeapYear(jahr);  
+    System.out.println("Ist das Jahr " + jahr + " ein Schaltjahr? " + schaltjahr);
         Point2D p1 = new Point2D(2.0, 3.0);
         Point2D p2 = p1.translate(1.0, -1.0);
         System.out.println("p1 = " + p1);

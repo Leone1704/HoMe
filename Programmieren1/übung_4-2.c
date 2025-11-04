@@ -20,7 +20,6 @@ int main(void) {
     if (a == 0) {
         /* Dann ist die Gleichung linear oder konstant */
         if (b == 0) {
-            /* b == 0 */
             if (c == 0) {
                 /* 0 = 0 */
                 printf("Ergebnis: Unendlich viele Lösungen.\n");
@@ -37,7 +36,8 @@ int main(void) {
     }
 
     /* a != 0 -> Quadratische Gleichung */
-    double D = b * b - 4.0 * a * c; /* Diskriminante */
+    double D = b * b - 4.0 * a
+     * c; /* Diskriminante */
 
     if (D > 0) {
         /* Zwei verschiedene reelle Lösungen */
@@ -45,11 +45,13 @@ int main(void) {
         double x1 = (-b + s) / (2.0 * a);   /* Formel 1 */
         double x2 = (-b - s) / (2.0 * a);   /* Formel 2 */
         printf("Ergebnis: Zwei verschiedene reelle Lösungen:\n");
-        printf("  x1 = %.12g\n", x1);
-        printf("  x2 = %.12g\n", x2);
+        printf("  x1 = %.4g\n", x1);
+        printf("  x2 = %.4g\n", x2);
     } else if (D == 0) {
         double x = -b / (2.0 * a);
         printf("x = %.2f\n", x);
+    } else if (D < 0){
+        printf("Ergebnis: Keine reellen Lösungen.\n");
     } 
 
     return 0;

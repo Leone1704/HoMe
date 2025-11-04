@@ -13,7 +13,6 @@ public final class Point2D {
     public double getY() { return y; }
 
     public double distanceTo(Point2D p) {
-        Objects.requireNonNull(p, "p must not be null");
         double dx = x - p.x;
         double dy = y - p.y;
         return Math.sqrt(dx*dx + dy*dy);
@@ -25,6 +24,6 @@ public final class Point2D {
 
     @Override
     public String toString() {
-        return String.format("(%.2f, %.2f)", x, y);
+        return "(" + x + ", " + y + ")";
     }
 }
