@@ -130,4 +130,3 @@ int main() {
     while (todo != 7);
     return 0;
 }
-
