@@ -135,7 +135,7 @@ int main(){
             break;
             default: 
                 printf("Falcher Wert\n");
-                return 0;;
+                return 0;
                 break;
             }
         }
