@@ -54,8 +54,8 @@ int main(){
     printf("Wieviele Zahlen möchten sie eingeben?");
     scanf(" %d", &count);
     
-    if (count <= 0 || count > 10) {
-        printf("Ungültige Anzahl: Bitte eine Zahl zwischen 1 und 10 eingeben.\n");
+    if (count <= 3 || count > 10) {
+        printf("Ungültige Anzahl: Bitte eine Zahl zwischen 3 und 10 eingeben.\n");
         return 1;
     }
     
@@ -397,4 +397,5 @@ int main(){
 
 
     return 0;
+
 }
