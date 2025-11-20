@@ -67,69 +67,59 @@ void addSumme(int x1)
     sum += x1;
 }
 
-void CompareSmall(int x1,int kleinsteZ){
-    if (x1 < kleinsteZ)
-    {
-        kleinsteZ = x1;
-        kleinste = i;
-    }
-}
-
-void CompareBig(int x1,int groeßteZ)
-{
-    if (x1 > groeßteZ)
-    {
-        groeßteZ= x1;
-        groeßte= i;
-    }
-}
-
 int main()
 {
-
+    int x1 = -1;
+    int res;
+    int check;
     printf("Wieviele Zahlen möchten sie eingeben?");
-    scanf(" %d", &count);
-
-    while (count < 3 || count > 10)
+    check = scanf(" %d", &count);
+    if (count < 3 || count > 10 || check != 1)
     {
         while (getchar() != '\n');
         printf("Ungültige Anzahl: Bitte eine Zahl zwischen 3 und 10 eingeben.\n");
+        return 1;
     }
 
     for (i = 0; i < count; i++)
     {
-        int x1 = -1;
-        int res;
+        
         if (i < count)
         {
             printf("%d. Zahl: ", i + 1);
             res = scanf(" %d", &x1);
             if (res != 1 || x1 < 0)
             {
-                while (getchar() != '\n')
-                    ;
+                while (getchar() != '\n');
                 printf("Ungültige Eingabe, bitte eine Zahl eingeben.\n");
                 i--;
                 continue;
             }
             addSumme(x1);
-        CompareSmall(x1, kleinsteZ);
-        CompareBig(x1, groeßteZ);
-            
-            
-            
+            if (x1 < kleinsteZ)
+            {
+                kleinsteZ = x1;
+                kleinste = i + 1;
+            }
+            if (x1 > groeßteZ)
+            {
+                groeßteZ= x1;
+                groeßte= i + 1;
+            }
         }
         
         
     }
-    printf("Summe: %d", sum);
-    printf("Die kleinste Zahl ist %d\n", kleinsteZ);
+    printf("Summe: %d\n", sum);
+    printf("Die %d. Zahl ist die kleinste Zahl mit dem Wert: %d\n",kleinste,  kleinsteZ);
+    printf("Die größte Zahl ist die %d. Zahl mit dem Wert: %d", groeßte, groeßteZ);
 
-    scanf(" %d", &ANzahlBrüche);
-    double ergebnis = leibnizPi(ANzahlBrüche);
-    printf("Das ergebnis ist: %.6f\n", ergebnis);
 
-    printf("\n\n\n");
-    spiel();
+    //scanf(" %d", &ANzahlBrüche);
+    //double ergebnis = leibnizPi(ANzahlBrüche);
+    //printf("Das ergebnis ist: %.6f\n", ergebnis);
+
+    //printf("\n\n\n");
+    //spiel();
     return 0;
 }
