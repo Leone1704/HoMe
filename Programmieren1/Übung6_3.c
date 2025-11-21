@@ -9,6 +9,7 @@ unsigned int countOverall = 0;
 unsigned int countGrade1 = 0, countGrade2 = 0, countGrade3 = 0,
             countGrade4 = 0, countGrade5 = 0, countGrade6 = 0;
 unsigned int count = 0;
+double mean = 0;
 
 
 
@@ -19,7 +20,11 @@ void readValues(unsigned int count) {
     for(unsigned int i = 0; i < count; i++){
         unsigned int current = 0;
         unsigned int versuche = count - i;
-        scanf(" %u", &current); 
+        while(scanf(" %u", &current) != 1){
+            printf("Falscher Werteinput, bist du hier . Sie haben %u Versuche\n", versuche);
+            while (getchar() != '\n');
+        }
+        
         countOverall += 1;
         switch(current) {
             case 1: countGrade1++; break;
@@ -46,17 +51,17 @@ void printGrades(void){
 
 float computeMean(void){
     if (count == 0) {
-        return 0.0f; // Schutz vor Division durch Null
+        return 0; // Schutz vor Division durch Null
     }
     float Durchschnitt = (countGrade1 * 1 + countGrade2 * 2 + countGrade3 * 3 + countGrade4 * 4 + countGrade5 * 5 + countGrade6 * 6) / (float)count;
+    mean = Durchschnitt;
     return Durchschnitt;
 }
 
 float standartAbweichung(void){
     if (countOverall == 0) {
-        return 0.0f; // Schutz vor Division durch 0
+        return 0;
     }
-    double mean = computeMean();
     double meanSq = ((double)countGrade1 * 1.0 * 1.0
                    + (double)countGrade2 * 2.0 * 2.0
                    + (double)countGrade3 * 3.0 * 3.0
@@ -71,7 +76,7 @@ float standartAbweichung(void){
 double computeMedian(void){
     // Median Berechnung
     double pos1 = 0, pos2 = 0;
-    int cum = 0; //cumulated XD
+    int kum = 0; 
     int val1 = 0, val2 = 0;
     if (countOverall % 2 == 1) {
         pos1 = (countOverall + 1) /2;
@@ -79,31 +84,31 @@ double computeMedian(void){
     } else {
         // Gerade Anzahl von Noten
         pos1 = countOverall /2;
-        pos2 = (countOverall + 1)/2;
+        pos2 = (countOverall + 2)/2;
     }
-    cum += countGrade1;
-    if (val1 == 0 && cum >= pos1) val1 = 1;
-    if (val2 == 0 && cum >= pos2) val2 = 1;
+    kum += countGrade1;
+    if (val1 == 0 && kum >= pos1) val1 = 1;
+    if (val2 == 0 && kum >= pos2) val2 = 1;
     /* Note 2 */
-    cum += countGrade2;
-    if (val1 == 0 && cum >= pos1) val1 = 2;
-    if (val2 == 0 && cum >= pos2) val2 = 2;
+    kum += countGrade2;
+    if (val1 == 0 && kum >= pos1) val1 = 2;
+    if (val2 == 0 && kum >= pos2) val2 = 2;
     /* Note 3 */
-    cum += countGrade3;
-    if (val1 == 0 && cum >= pos1) val1 = 3;
-    if (val2 == 0 && cum >= pos2) val2 = 3;
+    kum += countGrade3;
+    if (val1 == 0 && kum >= pos1) val1 = 3;
+    if (val2 == 0 && kum >= pos2) val2 = 3;
     /* Note 4 */
-    cum += countGrade4;
-    if (val1 == 0 && cum >= pos1) val1 = 4;
-    if (val2 == 0 && cum >= pos2) val2 = 4;
+    kum += countGrade4;
+    if (val1 == 0 && kum >= pos1) val1 = 4;
+    if (val2 == 0 && kum >= pos2) val2 = 4;
     /* Note 5 */
-    cum += countGrade5;
-    if (val1 == 0 && cum >= pos1) val1 = 5;
-    if (val2 == 0 && cum >= pos2) val2 = 5;
+    kum += countGrade5;
+    if (val1 == 0 && kum >= pos1) val1 = 5;
+    if (val2 == 0 && kum >= pos2) val2 = 5;
     /* Note 6 */
-    cum += countGrade6;
-    if (val1 == 0 && cum >= pos1) val1 = 6;
-    if (val2 == 0 && cum >= pos2) val2 = 6;
+    kum += countGrade6;
+    if (val1 == 0 && kum >= pos1) val1 = 6;
+    if (val2 == 0 && kum >= pos2) val2 = 6;
 
     /* Median ist Mittelwert der beiden Positionen (bei ungerader N sind pos1==pos2) */
     return ((double)val1 + (double)val2) / 2.0;
