@@ -2,14 +2,11 @@
 #include <math.h>
 
 int ANzahlBrüche;
-int count = 0;
 int i = 0;
 int groeßte;
 int kleinste;
 int groeßteZ = 0;
 int kleinsteZ = 100;
-int pruefGrößer = 1;
-int pruefKleiner = 1;
 int x1 = -1;
 int sum = 0;
 
@@ -72,16 +69,17 @@ int main()
     int x1 = -1;
     int res;
     int check;
-    printf("Wieviele Zahlen möchten sie eingeben?");
-    check = scanf(" %d", &count);
-    if (count < 3 || count > 10 || check != 1)
+    int count;
+    int fehler = 0;
+    printf("Wieviele Zahlen möchten sie eingeben?\n");
+    check = scanf("Weiviele Zahlen moechten sie eingeben?", &count);
+    while(!(scanf("%d", &count) == 1 && count >= 3 && count <= 10))
     {
         while (getchar() != '\n');
         printf("Ungültige Anzahl: Bitte eine Zahl zwischen 3 und 10 eingeben.\n");
-        return 1;
     }
 
-    for (i = 0; i < count; i++)
+    for (i = 0; i < count; i++ || check != 1)
     {
         
         if (i < count)
@@ -93,8 +91,11 @@ int main()
                 while (getchar() != '\n');
                 printf("Ungültige Eingabe, bitte eine Zahl eingeben.\n");
                 i--;
+                fehler++;
+                if (fehler == 3) return 1;
                 continue;
             }
+            fehler = 0;
             addSumme(x1);
             if (x1 < kleinsteZ)
             {
