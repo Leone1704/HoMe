@@ -39,54 +39,38 @@ int invert(int zahl){
 }
 int len = 0;
 int lenghtZahl = 0;
-int PalindromLaenge(int Palindrom){
-    len = 0;
-    while (Palindrom != 0){
-        Palindrom = Palindrom / 10;
-        len++;
+
+/* Rekursive Bestimmung der Ziffernanzahl; nutzt long long zur Sicherheit */
+int PalindromLaenge(long long Palindrom){
+    if (Palindrom < 0) Palindrom = -Palindrom;
+    if (Palindrom < 10) {
+        lenghtZahl = 1;
+        return 1;
     }
-    lenghtZahl = len;
-    return len;
+    lenghtZahl = 1 + PalindromLaenge(Palindrom / 10);
+    return lenghtZahl;
 }
 
-signed int PalindromCheck(int Palindrom, int lenght){
+/* Rekursive Palindromprüfung: vergleicht MSB und LSB und ruft sich für die Mitte auf */
+signed int PalindromCheck(long long Palindrom, int lenght){
+    if (Palindrom < 0) Palindrom = -Palindrom;
     if (lenght <= 1) {
-        printf("Gültige Zahl eingegeben.\n");
-        return 1; // einstellige Zahlen sind Palindrome
+        printf("Ist ein Palindrom.\n");
+        return 1;
     }
 
-    int links = Palindrom;
-    int rechts = Palindrom;
+    /* Ermittle höchsten Stellenwert */
+        long long pow10 = (long long) pow(10.0, (double)(lenght - 1));
+        int first = (int)(Palindrom / pow10);
+    int last = (int)(Palindrom % 10);
 
-    // pow10 = 10^(lenght-1)
-    int pow10 = 1;
-    for (int k = 1; k < lenght; ++k) {
-        pow10 *= 10;
-    } //geht auch mit pow10 = pow(10, lenght -1);
-
-    int paaren = lenght / 2;
-    for (int i = 0; i < paaren; ++i) {
-        int erste = rechts / pow10;   // MSB
-        int letzte = links % 10;      // LSB
-
-        if (erste != letzte) {
-            printf("Kein Palindrom.\n");
-            return 0; // kein Palindrom
-        }
-
-        // entferne erste und letzte Ziffer
-        rechts = rechts % pow10; // entferne MSB
-        //printf("rechts nach entfernen MSB: %d\n", rechts); //Check check für mich
-        rechts = rechts / 10;    // verschiebe um eine Stelle
-        //printf("rechts nach verschieben: %d\n", rechts);
-        links = links / 10;      // entferne LSB
-
-        // zwei Ziffern weniger => pow10 durch 100 teilen
-        pow10 /= 100; 
+    if (first != last) {
+        printf("Kein Palindrom.\n");
+        return 0;
     }
 
-    printf("yesss\n");
-    return 1; // ist Palindrom
+    long long middle = (Palindrom % pow10) / 10; // entferne erst und letzte Ziffer
+    return PalindromCheck(middle, lenght - 2);
 }
 
 unsigned int func(unsigned int  b){
