@@ -24,7 +24,7 @@ void ausgabe(){
 
 int sensor(){
     int sensorValue = 20;
-    if(10 <= sensorValue && sensorValue <= 30 )  
+    if(10 <= sensorValue && sensorValue  <= 30 )  
         printf("Sensorwert liegt im Intervall");
     else
         printf("Sensorwert liegt nicht im Intervall");
@@ -34,18 +34,38 @@ int check(){
     int a = -1;
     unsigned int b = 1;
     unsigned int c = 0xFFFFFFFFu;
+    printf("%d\n",sizeof(a));
+    printf("%d\n",sizeof(b));
+    printf("%d\n",sizeof(c));
+    printf("%d\n",(a < b));
+    printf("%d\n",(a + (int)b));
+    printf("%d\n",((unsigned int)b + c));
+    printf("%d\n",(a == c));
 
-/*  a) Welchen Typ hat der Ausdruck (a < b) und welchen Wert?           // Der Ausdruck hat den Typ int und den Wert 1 (wahr)
+/*  a) Welchen Typ hat der Ausdruck (a < b) und welchen Wert?           // Der Ausdruck hat denke ich den wert 0, da er als unsigned int gecastet wird und somit -1 größer als 1 ist
     b) Welchen Wert hat der Ausdruck a + b (als int interpretiert)?     // Der Ausdruck hat den Wert 0, da 2^32 + 1 = 0 owerflow
-    c) Welchen Wert hat der Ausdruck b + c (als unsigned int)?          // 0xFFFFFFFF + 1 = 0 (overflow)    
-    d) Welchen Wert hat der Ausdruck a == c?*/                          // müsste 0 sein da c nen unsigned int ist und a negativ ist
+    c) Welchen Wert hat der Ausdruck b + c (als unsigned int)?          // 0xFFFFFFFF + 1 = 0 (overflow)  16 ^8 + 1 =   
+    d) Welchen Wert hat der Ausdruck a == c?*/                          // müsste 1 werden, da das ganze zu nem unsigned int 
+}
+
+int mask(){
+    float f = 10.625;
+    unsigned int mask = *(unsigned int*)&f;
+    printf("Hexadezimal: 0x%X\n", mask);
+    
+    unsigned int sign = (mask >> 31) & 0x1;
+    unsigned int exponent = (mask >> 23) & 0xFF;
 }
 
 int main(void) {
     //ausgabe();
-    sensor();
+    //sensor();
+    //check();
+    mask();
     return 0;
 }
+
+
 //a) optional
 /*
 int a = 24789;
@@ -70,7 +90,7 @@ oder Compiler-Optimierungen zu unerwartetem Verhalten führen.
 24789 = 1100000011010101           
 10212 = 0010011111100100       
 
-a ^= b;  1110011100110001
+a ^= b; 1110011100110001
 
 1110011100110001
 0010011111100100
