@@ -7,6 +7,6 @@
 #define BEGIN        {
 #define END          }
 #define SUCCESS      return 0;
-#define WRITE(fmt)  printf(fmt);
+#define WRITE(...)  printf(__VA_ARGS__);
 
 #endif // ZUCKZUCK_H

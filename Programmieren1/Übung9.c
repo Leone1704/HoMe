@@ -93,6 +93,25 @@ void readString(char String[]) {
     return;
 }
 
+void readString2(char String[]){
+    int Counter = 0;
+    for (int i = 0; String[i] != '\0'; i++){
+        if(String[i] < (char)64 || String[i] > (char)91){
+            Counter++;
+        }
+    }
+    printf("Anzahl der Buchstaben: %d\n", Counter);
+}
+
+void enZaeler(char String[]){
+    int zaehler = 0;
+    for (int i = 0; String[i] != '\0'; i++){
+        if(String[i] == (char)101 && String[i + 1] <= (char)110){
+            zaehler++;
+        }
+    }
+    printf("Anzahl der en's: %d\n", zaehler);
+}
 
 int main(void) {
 /*int array[10] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
@@ -115,5 +134,7 @@ int zwo[10] = {0};
 printf("Geben sie einen String ein: ");
 scanf("%s", String);
 readString(String);
+readString2(String);
+enZaeler(String);
 return 0;
 }
