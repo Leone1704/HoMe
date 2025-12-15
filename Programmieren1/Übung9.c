@@ -132,9 +132,34 @@ void StringZaehler(char String[], char extra[]){
 }
 
 void Zellen(){
-    
+    int zelle[101] = {0}; // Index 1..100 nutzbar, Anfangszustand 0
+
+    for (int Durchlauf = 1; Durchlauf <= 100; Durchlauf++){
+        for (int zellenNummer = 1; zellenNummer <= 100; zellenNummer++){
+            if (zellenNummer % Durchlauf == 0){
+                zelle[zellenNummer] = !zelle[zellenNummer]; // Zustand umschalten, nicht neu setzen
+            }
+        }
+    }
+
+
+    for (int zellenNummer = 1, Count = 0; zellenNummer <= 100; zellenNummer++, Count++){
+        if (Count % 5 == 0){
+            printf("\n"); // Zeilenumbruch nach jeder 10. Zelle
+        }
+        if (zellenNummer < 10){
+            printf(" "); // Zusätzlicher Abstand für einstellige ZellenNummern
+        }
+        if (zellenNummer < 100){
+            printf(" "); // Zusätzlicher Abstand für zweistellige ZellenNummern
+        }
+        if (zelle[zellenNummer] == 1){
+        printf("|Zelle %d ist '%s'|", zellenNummer, "offen");
+        } else {
+        printf("|Zelle %d ist '%s'   |", zellenNummer, "zu");
+        }
+    }
 }
-    
 
 int main(void) {
 /*int array[10] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
@@ -155,12 +180,13 @@ int zwo[10] = {0};
 //dreierTeiler(big, 41);
 //plusDrei(smol, 9, x);
 //zwooo(zwo, 13, 3);
-printf("Geben sie einen String ein: ");scanf("%s", String);
+//printf("Geben sie einen String ein: ");scanf("%s", String);
 //readString(String);
 //readString2(String);
 //enZaehler(String);
-printf("Geben sie einen String ein den Sie überprüfen möchten: ");scanf(" %s", extra);
-StringZaehler(String, extra);
+Zellen();
+//printf("Geben sie einen String ein den Sie überprüfen möchten: ");scanf(" %s", extra);
+//StringZaehler(String, extra);
 
 return 0;
 }
