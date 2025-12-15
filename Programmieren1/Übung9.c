@@ -103,21 +103,45 @@ void readString2(char String[]){
     printf("Anzahl der Buchstaben: %d\n", Counter);
 }
 
-void enZaeler(char String[]){
+void enZaehler(char String[]){
     int zaehler = 0;
     for (int i = 0; String[i] != '\0'; i++){
-        if(String[i] == (char)101 && String[i + 1] <= (char)110){
+        if(String[i] == 'e' && String[i + 1] == 'n'){
             zaehler++;
         }
     }
     printf("Anzahl der en's: %d\n", zaehler);
 }
 
+void StringZaehler(char String[], char extra[]){
+    int count = 0;
+    int lenString = strlen(String);
+    int lenExtra = strlen(extra);
+    for (int i = 0; i <= lenString - lenExtra; i++){
+        int j;
+        for (j = 0; j < lenExtra; j++){
+            if (String[i + j] != extra[j]){
+                break;
+            }
+        }
+        if (j == lenExtra){
+            count++;
+        }
+    }
+    printf("Der String '%s' kommt %d-mal in '%s' vor.\n", extra, count, String);
+}
+
+void Zellen(){
+    
+}
+    
+
 int main(void) {
 /*int array[10] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 for (int i = 0; i < 10; i++) {
     printf(" %d", array[i]);
 }*/
+char extra[200];
 char String[200];
 int arr[10] = {1,2,3,4,5,6,7,8,9,10};
 int big[41] = {5, 6, 7, 8, 9, 10, 11, 12, 13, 14,
@@ -131,10 +155,12 @@ int zwo[10] = {0};
 //dreierTeiler(big, 41);
 //plusDrei(smol, 9, x);
 //zwooo(zwo, 13, 3);
-printf("Geben sie einen String ein: ");
-scanf("%s", String);
-readString(String);
-readString2(String);
-enZaeler(String);
+printf("Geben sie einen String ein: ");scanf("%s", String);
+//readString(String);
+//readString2(String);
+//enZaehler(String);
+printf("Geben sie einen String ein den Sie überprüfen möchten: ");scanf(" %s", extra);
+StringZaehler(String, extra);
+
 return 0;
 }
