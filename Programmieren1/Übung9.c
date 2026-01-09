@@ -88,7 +88,7 @@ void readString(char String[]) {
             Count++;
         }
     }
-    printf("Der String hat %d-mal den Buchstaben a", Count);
+    printf("Der String hat %d-mal den Buchstaben a", CountA);
     printf(" und %d-mal das Zeichen %c.\n", Count, ch);
     return;
 }
