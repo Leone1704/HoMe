@@ -38,6 +38,22 @@ void variadicFunction() {
     printf("Summe: %d\n", ergebnis);
 }
 
+void variadicFunction_Args(int anzahl, ...) {
+    va_list args;
+    va_start(args, anzahl);
+
+    int ergebnis = 0;
+
+    for (int i = 0; i < anzahl; i++) {
+        int zahl = va_arg(args, int);
+        ergebnis += zahl;
+    }
+
+    va_end(args);
+
+    printf("Summe: %d\n", ergebnis);
+}
+
 void AufzaehlungBisN(Ausgabereihenfolge richtung) {
     int n;
     printf("Geben Sie eine positive ganze Zahl ein: ");
@@ -151,8 +167,9 @@ bool istPrimzahl(int zahl) {
     return true;
 }
 
-void PrimzahlErkenner() {
-    int grenzwert;
+void PrimzahlErkenner(int grenzwert) {
+
+    
     
     printf("Geben Sie den Grenzwert ein: ");
     if (scanf("%d", &grenzwert) != 1 || grenzwert < 2) {
@@ -173,6 +190,43 @@ void PrimzahlErkenner() {
 }
 
 
+void SiebDesEratosthenes(int grenzwert) {
+    bool *istPrim = malloc((grenzwert + 1) * sizeof(bool));
+
+    if (istPrim == NULL) {
+        printf("Speicher konnte nicht reserviert werden.\n");
+        return;
+    }
+
+    // Initialisierung
+    for (int i = 0; i <= grenzwert; i++) {
+        istPrim[i] = true;
+    }
+
+    istPrim[0] = istPrim[1] = false;
+
+    // Sieb
+    for (int i = 2; i * i <= grenzwert; i++) {
+        if (istPrim[i]) {
+            for (int j = i * i; j <= grenzwert; j += i) {
+                istPrim[j] = false;
+            }
+        }
+    }
+
+    // Ausgabe
+    int count = 0;
+    printf("Primzahlen zwischen 1 und %d:\n", grenzwert);
+    for (int i = 2; i <= grenzwert; i++) {
+        if (istPrim[i]) {
+            printf("%d ", i);
+            count++;
+        }
+    }
+    printf("\nAnzahl der Primzahlen: %d\n", count);
+
+    free(istPrim);
+}
 
 int main() {
     return 0;
