@@ -3,6 +3,8 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 #include <stdlib.h>
+#include <sys/mman.h>
+
 
 
 int aufgabe_1(){
@@ -68,7 +70,49 @@ int aufgabe_2() {
     return 0;
 }
 
+void child_funktion_aufgabe_3(int *zaehler_ptr) {
+    for (int i = 0; i < 10000; i++) {
+        *zaehler_ptr = *zaehler_ptr + 1;
+    }
+
+    printf("Child PID=%d (SHM): Wert=%d, Adresse=%p\n", getpid(), *zaehler_ptr, (void *)zaehler_ptr);
+}
+
+int aufgabe_3() {
+    int *zaehler_ptr = mmap(NULL, sizeof(int), PROT_READ | PROT_WRITE, MAP_SHARED | MAP_ANONYMOUS, -1, 0);
+    if (zaehler_ptr == MAP_FAILED) {
+        perror("mmap fehlgeschlagen");
+        return 1;
+    }
+
+    *zaehler_ptr = 0;
+
+    for (int i = 0; i < 10; i++) {
+        pid_t pid = fork();
+
+        if (pid < 0) {
+            perror("fork fehlgeschlagen");
+            munmap(zaehler_ptr, sizeof(int));
+            return 1;
+        }
+
+        if (pid == 0) {
+            child_funktion_aufgabe_3(zaehler_ptr);
+            munmap(zaehler_ptr, sizeof(int));
+            exit(67);
+        }
+    }
+
+    for (int i = 0; i < 10; i++) {
+        wait(NULL);
+    }
+
+    printf("Parent PID=%d (SHM): Wert=%d, Adresse=%p\n", getpid(), *zaehler_ptr, (void *)zaehler_ptr);
+    munmap(zaehler_ptr, sizeof(int));
+    return 0;
+}
+
 int main() {
-    aufgabe_2();
+    aufgabe_3();
     return 0;
 }
