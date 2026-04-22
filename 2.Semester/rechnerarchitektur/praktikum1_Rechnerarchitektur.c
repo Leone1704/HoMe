@@ -29,7 +29,7 @@ static void print_binary_float(float value) {
         mantisse_anteil = (double)mantisse / (double)(1U << 23);
         signifikand = 1.0 + mantisse_anteil;
     } else {
-        prinf("Fehler: Ungültiger Exponent (Sonderfälle wie NaN oder Unendlich werden nicht unterstützt).\n");
+        printf("Fehler: Ungültiger Exponent (Sonderfälle wie NaN oder Unendlich werden nicht unterstützt).\n");
         return;
     }
 
