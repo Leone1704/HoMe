@@ -6,8 +6,8 @@ static void print_binary_float(float value) {
     uint32_t bits = 0;
     memcpy(&bits, &value, sizeof(bits));
     uint32_t vorzeichen = (bits >> 31) & 1U;
-    uint32_t exponent = (bits >> 23) & 0xFFU;
-    uint32_t mantisse = bits & 0x7FFFFFU;
+    uint32_t exponent = (bits >> 23) & 0xFFU; // 
+    uint32_t mantisse = bits & 0x7FFFFFU; // 23 Bits für die Mantisse
     int exponent_unbiased = 0;
     double mantisse_anteil = 0.0;
     double signifikand = 0.0;
@@ -24,24 +24,19 @@ static void print_binary_float(float value) {
         }
     }
 
-    if (exponent == 0U) {
-        exponent_unbiased = -126;
-        mantisse_anteil = (double)mantisse / (double)(1U << 23);
-        signifikand = mantisse_anteil;
-    } else if (exponent == 255U) {
-        exponent_unbiased = 128;
-        mantisse_anteil = (double)mantisse / (double)(1U << 23);
-        signifikand = 1.0 + mantisse_anteil;
-    } else {
+    if (exponent > 0U && exponent < 255U) {
         exponent_unbiased = (int)exponent - 127;
         mantisse_anteil = (double)mantisse / (double)(1U << 23);
         signifikand = 1.0 + mantisse_anteil;
+    } else {
+        prinf("Fehler: Ungültiger Exponent (Sonderfälle wie NaN oder Unendlich werden nicht unterstützt).\n");
+        return;
     }
 
     printf("\n");
     printf("Vorzeichen = %s\n", (vorzeichen == 1) ? "-" : "+");
-    printf("Exponent (unbiased) = %d\n", exponent_unbiased);
-    printf("Signifikand = %.10f\n", signifikand);
+    printf("Exponent = %d\n", exponent_unbiased);
+    printf("Mantisse = %.10f\n", signifikand);
 }
 
 
