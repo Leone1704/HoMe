@@ -20,23 +20,26 @@ void *worker (void *arg) {
         pthread_mutex_unlock(&mutex);
     }
     printf("Thread finished: Wert=%d, Adresse=%p\n", *counter, (void *)counter);
+    
     return NULL;
 }
 
-void child_funktion_aufgabe_1(int *zaehler_ptr, sem_t *semaphore) {
+void child_funktion_aufgabe_1(int *zaehler_ptr, sem_t *semaphore, sem_t *semaphoreTest) {
+    //sem_wait(semaphoreTest);
     for (int i = 0; i < 10000; i++) {
         sem_wait(semaphore);
         *zaehler_ptr = *zaehler_ptr + 1;
         sem_post(semaphore);
     }
-
+    
     printf("Child PID=%d (SHM): Wert=%d, Adresse=%p\n", getpid(), *zaehler_ptr, (void *)zaehler_ptr);
+   // sem_post(semaphoreTest);
 }
 
 int aufgabe_1() {
     shm_unlink(SHM_NAME);
-    sem_unlink("/praktikum_2_semaphore");
     sem_t *semaphore = sem_open("/praktikum_2_semaphore", O_CREAT, 0600, 1);
+    sem_t *semaphoreTest = sem_open("/praktikum_2_semaphore_printf", O_CREAT, 0600, 1);
     if (semaphore == SEM_FAILED) {
         perror("sem_open fehlgeschlagen");
         return 1;
@@ -85,7 +88,7 @@ int aufgabe_1() {
                 exit(67);
             }
 
-            child_funktion_aufgabe_1(zaehler_ptr, semaphore);
+            child_funktion_aufgabe_1(zaehler_ptr, semaphore, semaphoreTest);
 
             if (munmap(zaehler_ptr, sizeof(int)) == -1) {
                 perror("child munmap fehlgeschlagen");
@@ -126,23 +129,24 @@ int aufgabe_1() {
 
 
 int main() {
-    int aufgabe_b_2 = 0;
-    int *ptr_aufgabe_b_2 = &aufgabe_b_2;
+    // int aufgabe_b_2 = 0;
+    // int *ptr_aufgabe_b_2 = &aufgabe_b_2;
     
-    pthread_t thread[10];
-    for (int i = 0; i < 10; i++) {
-        if (pthread_create(&thread[i], NULL, worker, ptr_aufgabe_b_2) != 0) {
-            perror("pthread_create fehlgeschlagen");
-            return 1;
-        }
-    }
-    for (int i = 0; i < 10; i++) {
-        pthread_join(thread[i], NULL);
-    }
+    // pthread_t thread[10];
+    // for (int i = 0; i < 10; i++) {
+    //     if (pthread_create(&thread[i], NULL, worker, ptr_aufgabe_b_2) != 0) {
+    //         perror("pthread_create fehlgeschlagen");
+    //         return 1;
+    //     }
+    // }
+    // for (int i = 0; i < 10; i++) {
+    //     pthread_join(thread[i], NULL);
+    // }
 
-    printf("Main thread finished: Wert=%d, Adresse=%p\n", *ptr_aufgabe_b_2, (void *)ptr_aufgabe_b_2);
+    // printf("Main thread finished: Wert=%d, Adresse=%p\n", *ptr_aufgabe_b_2, (void *)ptr_aufgabe_b_2);
 
-    //aufgabe_1();
-    pthread_mutex_destroy(&mutex);
+    
+    // pthread_mutex_destroy(&mutex);
+    aufgabe_1();
     return 0;
 }
