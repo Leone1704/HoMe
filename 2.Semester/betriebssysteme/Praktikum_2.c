@@ -19,7 +19,7 @@ int aufgabe_1(){
 
     if (pid == 0) {
         printf("Ich bin das Child mit der PID=%d und habe den Parent mit PID=%d\n", getpid(), getppid());
-        sleep(5);
+        sleep(200);
         exit(67);
     } else {
         printf("Ich bin der Parent mit der PID=%d und habe das Child mit PID=%d\n", getpid(), pid);
