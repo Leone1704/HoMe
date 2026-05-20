@@ -10,6 +10,9 @@ volatile int running = 0;
 int counter = 0;
 volatile int stop_signal = 0;
 
+
+
+
 void on_signal(int signum) {
     printf("Signal erhalten: %d\n", signum);
     if (signum == SIGUSR1) {
@@ -37,8 +40,10 @@ void* timer_handler(void* arg) {
     return NULL;
 }
 
-int main (){
-    sigset_t signal_set;
+    
+
+int main() {
+  sigset_t signal_set;
     int sig;
     pthread_t timer_thread;
     sigemptyset(&signal_set);
@@ -50,6 +55,7 @@ int main (){
 
 
     printf("PID: %d\n", getpid());
+
 
 
     while (!stop_signal) {
@@ -67,7 +73,8 @@ int main (){
         }
 
     }
-    pthread_join(timer_thread, NULL);  
+    pthread_join(timer_thread, NULL);
+   
 
 
 }
