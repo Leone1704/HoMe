@@ -15,6 +15,7 @@ quadrat:
    
     movl %r8d, %edx
     shll $1, %edx
+    
 
     # edx = 2 * i - 1
     subl $1, %edx
@@ -28,5 +29,9 @@ quadrat:
 
     loop .schleife
 
+
+
 .fertig:
+
+    shrl $1, $eax
     ret

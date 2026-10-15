@@ -23,7 +23,7 @@ void sortiert_einfuegen(FILE *bin, Messwert neu) {
     rewind(bin);
 
     while (fread(&temp, sizeof(Messwert), 1, bin) == 1) {
-        if (temp.nummer > neu.nummer) {
+        if (temp.wert > neu.wert) {
             break;
         }
 

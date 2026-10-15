@@ -10,7 +10,7 @@ mov ss, ax
 mov sp, 0x7C00
 sti
 cld 
-call _testVGA
+
 
 mov si, titel
 call _printText
@@ -87,7 +87,8 @@ call _printText
 
 mov al, ch
 add al, 2 
-daa       
+daa
+
 
 cmp al, 24h 
 jb _passt
@@ -113,9 +114,22 @@ call _printChar
 
 call _printKomma
 
+;Minute
+mov al, cl
+add al, 30h 
+daa
+
+
+cmp al, 60h 
+jb _passtMinute
+sub al, 60h 
+
+_passtMinute:
+mov bl, al
+
 
 xor ax, ax
-mov ah, cl
+mov ah, bl
 shr ah, 4
 add ah, '0'
 mov al, ah
@@ -194,14 +208,6 @@ mov bx, 0001h
 mov cx, 0003h
 int 15h
 ret 
-
-
-
-
-
-
-
-
 
 
 
